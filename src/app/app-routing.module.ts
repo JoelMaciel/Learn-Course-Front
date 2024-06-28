@@ -7,14 +7,27 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { UnauthorizedComponent } from './pages/unauthorized/unauthorized.component';
+import { AuthGuard } from './guard/auth.guard';
+import { Role } from './models/role.enum';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
+
   {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'profile', component: ProfileComponent},
-  {path: 'admin', component: AdminComponent},
+
+  {path: 'profile',
+    component: ProfileComponent,
+    canActivate: [AuthGuard],
+    data: {roles: [Role.ADMIN, Role.STUDENT]}
+  },
+
+  {path: 'admin', component: AdminComponent,
+    canActivate: [AuthGuard],
+    data: {roles: Role.ADMIN}
+  },
+
   {path: '404', component: NotFoundComponent},
   {path: '401', component: UnauthorizedComponent},
 ];
