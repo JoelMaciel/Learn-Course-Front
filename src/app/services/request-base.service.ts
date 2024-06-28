@@ -3,7 +3,7 @@ import { User } from "../models/user.model";
 import { AuthenticationService } from "./authentication.service";
 
 
-export class RequestBaseService {
+export abstract class RequestBaseService {
 
   protected currentUser: User = new User;
 

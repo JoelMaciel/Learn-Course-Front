@@ -1,7 +1,7 @@
 
 export const environment = {
   production: false,
-  BASE_URL: 'http://localhost:8080/learn-auth/api/'
+  BASE_URL: 'http://localhost:8080'
 };
 
 

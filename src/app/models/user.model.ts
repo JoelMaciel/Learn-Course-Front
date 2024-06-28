@@ -2,7 +2,7 @@ import {Role} from "./role.enum"
 import { v4 as uuidv4 } from 'uuid';
 
 export class User {
-  id: string | undefined;
+  userId: string | undefined;
   username: string = "";
   fullName: string = "";
   cpf: string = "";
@@ -13,6 +13,6 @@ export class User {
   role: Role = Role.STUDENT;
 
   constructor() {
-    this.id = uuidv4();
+    this.userId = uuidv4();
   }
 }
