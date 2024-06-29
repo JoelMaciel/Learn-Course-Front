@@ -5,7 +5,7 @@ import { User } from '../models/user.model';
 import { HttpClient } from '@angular/common/http';
 import { map } from "rxjs/operators";
 
-const API_URL = environment.BASE_URL + '/auth'
+const API_URL = environment.BASE_URL + '/learn-auth/api/auth'
 
 @Injectable({
   providedIn: 'root'
@@ -23,26 +23,29 @@ export class AuthenticationService {
 
     this.currentUserSubject = new BehaviorSubject<User>(storageUser);
     this.currentUser =  this.currentUserSubject.asObservable();
+    console.log(this.currentUser);
+
   }
 
   public get currentUserValue(): User {
     return this.currentUserSubject.value;
   }
 
-  login( user: User ): Observable<any> {
+  login( user: User ): Observable<User> {
     return this.http.post<any>(API_URL + "/login", user).pipe(
       map(response => {
         if(response) {
           localStorage.setItem("currentUser", JSON.stringify(response));
           this.currentUserSubject.next(response);
+          console.log('Token JWT recebido:', response.token);
         }
         return response;
        })
     )
   }
 
-  register(user: User): Observable<any> {
-    return this.http.post(API_URL + "/signup", user);
+  register(user: User): Observable<User> {
+    return this.http.post<User>(API_URL + "/signup", user);
   };
 
   logOut() {

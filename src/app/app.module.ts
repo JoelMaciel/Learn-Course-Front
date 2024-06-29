@@ -13,6 +13,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { UnauthorizedComponent } from './pages/unauthorized/unauthorized.component';
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from '@angular/forms';
+import { CourseSaveComponent } from './components/course-save/course-save.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { FormsModule } from '@angular/forms';
     ProfileComponent,
     HomeComponent,
     RegisterComponent,
-    UnauthorizedComponent
+    UnauthorizedComponent,
+    CourseSaveComponent
   ],
   imports: [
     BrowserModule,

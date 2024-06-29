@@ -3,6 +3,7 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTr
 import { Observable } from 'rxjs';
 import { User } from '../models/user.model';
 import { AuthenticationService } from '../services/authentication.service';
+import { Role } from '../models/role.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       if(this.currentUser) {
-        if(route.data.roles?.indexOf(this.currentUser.role) === -1) {
+        if(route.data.roles?.indexOf(Role.ADMIN) === -1) {
           this.router.navigate(["/401"])
           return false;
         }
