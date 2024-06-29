@@ -26,12 +26,14 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  login() {
-    this.authenticationService.login(this.user).subscribe(data => {
-      this.router.navigate(["/profile"]);
-    }, err => {
-      this.errorMessage = "Username or Password is incorrect."
-      console.log(err);
-    })
-  }
+login() {
+  this.authenticationService.login(this.user).subscribe(data => {
+    console.log('Token JWT recebido:', data.token);
+    this.router.navigate(['/profile']);
+  }, err => {
+    this.errorMessage = 'Username or Password is incorrect.';
+    console.error('Erro durante o login:', err);
+  });
+}
+
 }

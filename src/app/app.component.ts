@@ -22,9 +22,13 @@ export class AppComponent {
     })
   }
 
-  isAdmin() {
-    return this.currentUser?.role === Role.ADMIN;
+   hasRole(role: Role): boolean {
+    return this.currentUser && Array.isArray(this.currentUser.roles) && this.currentUser.roles.includes(role);
   }
+
+   isAdmin(): boolean {
+     return this.hasRole(Role.ADMIN);
+   }
 
   logOut() {
     this.authenticationService.logOut();

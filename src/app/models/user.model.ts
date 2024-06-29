@@ -10,7 +10,7 @@ export class User {
   email: string = "";
   phoneNumber: string = "";
   token: string = "";
-  role: Role = Role.STUDENT;
+  roles: Role[] = []
 
   constructor() {
     this.userId = uuidv4();
