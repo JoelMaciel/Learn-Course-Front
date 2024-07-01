@@ -9,7 +9,7 @@
 
 button {
     color: white;
-    background-color: #377237ed;
+    background-color: #963b8ded;
     border: none;
     padding: 10px 20px;
     font-size: 16px;
@@ -18,5 +18,5 @@ button {
 }
 
 button:hover {
-    background-color: #3c6b40;
+    background-color: #903b7c;
 }

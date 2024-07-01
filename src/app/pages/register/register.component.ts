@@ -28,15 +28,29 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    this.authenticationService.register(this.user).subscribe(data => {
-      this.router.navigate(['/login']);
-    }, err => {
-      if (err?.status === 409) {
-        this.errorMessage = "Username alredy exist";
-      } else {
-        this.errorMessage = "Unexpected error occurred";
-        console.log(err);
+    this.authenticationService.register(this.user).subscribe(
+      data => {
+        this.router.navigate(['/login']);
+      },
+      err => {
+        this.handleRegistrationError(err);
       }
-    })
+    );
+  }
+
+  private handleRegistrationError(err: any) {
+    if (err.status === 409) {
+      this.errorMessage = this.getErrorMessageByType(err.error.type, err.error.userMessage);
+    } else {
+      this.errorMessage = "Unexpected error occurred.";
+    }
+  }
+
+  private getErrorMessageByType(type: string, userMessage: string): string {
+    const errorMessages: { [key: string]: string } = {
+      'EMAIL_DUPLICATE': "Email already exists.",
+      'CPF_DUPLICATE': "CPF already exists."
+    };
+    return errorMessages[type] || userMessage || "Unexpected error occurred.";
   }
 }

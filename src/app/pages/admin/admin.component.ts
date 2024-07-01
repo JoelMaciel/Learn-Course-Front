@@ -9,10 +9,9 @@ import { CourseService } from 'src/app/services/course.service';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
+  courseList: Course[] = [];
 
   @ViewChild(CourseSaveComponent) saveComponent: CourseSaveComponent | undefined;
-  courseList: Array<Course> = [];
-
   constructor(private courseService: CourseService) { }
 
   ngOnInit(): void {

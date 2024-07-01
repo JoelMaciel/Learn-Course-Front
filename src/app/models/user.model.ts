@@ -1,5 +1,6 @@
-import {Role} from "./role.enum"
 import { v4 as uuidv4 } from 'uuid';
+import { Role } from './role.models';
+import { RoleType } from './roleType.enum';
 
 export class User {
   userId: string | undefined;

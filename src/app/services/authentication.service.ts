@@ -16,15 +16,14 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient ) {
     let storageUser;
-    const storagrUserAsStr = localStorage.getItem('currentUser');
-    if(storagrUserAsStr) {
-      storageUser = JSON.parse(storagrUserAsStr);
+    const storagerUserAsString = localStorage.getItem('currentUser');
+    if(storagerUserAsString) {
+      storageUser = JSON.parse(storagerUserAsString);
     }
 
     this.currentUserSubject = new BehaviorSubject<User>(storageUser);
     this.currentUser =  this.currentUserSubject.asObservable();
     console.log(this.currentUser);
-
   }
 
   public get currentUserValue(): User {

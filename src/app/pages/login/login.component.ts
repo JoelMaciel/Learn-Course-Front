@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if ( this.authenticationService.currentUserValue?.userId) {
+    if (this.authenticationService.currentUserValue?.userId) {
       this.router.navigate(["/profile"])
       return;
     }
@@ -34,6 +34,5 @@ login() {
     this.errorMessage = 'Username or Password is incorrect.';
     console.error('Erro durante o login:', err);
   });
-}
-
+ }
 }

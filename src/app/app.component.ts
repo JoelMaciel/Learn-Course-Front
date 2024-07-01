@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { User } from './models/user.model';
 import { AuthenticationService } from './services/authentication.service';
 import { Router } from '@angular/router';
-import { Role } from './models/role.enum';
+import { RoleType } from './models/roleType.enum';
 
 @Component({
   selector: 'app-root',
@@ -10,25 +10,24 @@ import { Role } from './models/role.enum';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'learn-easy';
+
   currentUser: User = new User;
 
-  constructor(
-    private authenticationService: AuthenticationService,
-    private router: Router
-  ){
+  constructor(private authenticationService: AuthenticationService, private router: Router){
     this.authenticationService.currentUser.subscribe(data => {
       this.currentUser = data;
+       console.log('Usuário atual:', this.currentUser);
     })
   }
 
-   hasRole(role: Role): boolean {
-    return this.currentUser && Array.isArray(this.currentUser.roles) && this.currentUser.roles.includes(role);
+isAdmin(): boolean {
+  if (this.currentUser?.roles) {
+    return this.currentUser.roles.some(role => role.roleName.includes(RoleType.ADMIN));
   }
 
-   isAdmin(): boolean {
-     return this.hasRole(Role.ADMIN);
-   }
+  return false;
+}
+
 
   logOut() {
     this.authenticationService.logOut();
