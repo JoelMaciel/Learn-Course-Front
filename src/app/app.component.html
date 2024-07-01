@@ -12,6 +12,7 @@
             <a [routerLink]="['/home']" routerLinkActive="active" class="nav-link">Home</a>
         </div>
     </div>
+
     <div class="navbar-nav ms-auto" *ngIf="!currentUser?.userId">
         <div class="nav-item">
             <a [routerLink]="['/register']" routerLinkActive="active" class="nav-link">Sign Up</a>
@@ -23,14 +24,15 @@
 
     <div class="navbar-nav ms-auto" *ngIf="currentUser?.userId">
         <div class="nav-item">
-            <a [routerLink]="['/profiile']" routerLinkActive="active" class="nav-link">
-              {{ currentUser.username}}
-            </a>
+            <a [routerLink]="['/profile']" routerLinkActive="active" class="nav-link">
+               {{ currentUser.username }}
+           </a>
         </div>
         <div class="nav-item">
             <a (click)="logOut()" class="nav-link" style="cursor: pointer;">Sign Out</a>
         </div>
     </div>
+
 </div>
 
 <router-outlet></router-outlet>

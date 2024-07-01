@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Course } from 'src/app/models/course.models';
 import { CourseService } from 'src/app/services/course.service';
 
@@ -9,17 +9,13 @@ declare var $: any;
   templateUrl: './course-save.component.html',
   styleUrls: ['./course-save.component.css']
 })
-export class CourseSaveComponent implements OnInit {
-
+export class CourseSaveComponent {
   course: Course = new Course();
   errorMessage: string = "";
 
   @Output() save = new EventEmitter<any>();
 
   constructor(private courseService: CourseService) { }
-
-  ngOnInit(): void {
-  }
 
   saveCourse() {
     this.courseService.saveCourse(this.course).subscribe(data => {
@@ -28,14 +24,14 @@ export class CourseSaveComponent implements OnInit {
     }, err => {
       this.errorMessage = "Unexpected error occurred.";
       console.log(err);
-    })
+    });
   }
 
   showCourseModal() {
     $('#courseModal').modal('show');
   }
 
-   isPriceInvalid(): boolean {
+  isPriceInvalid(): boolean {
     return this.course.price <= 0;
   }
 }
