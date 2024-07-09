@@ -52,3 +52,4 @@ export class AuthenticationService {
     this.currentUserSubject.next(new User);
   }
 }
+

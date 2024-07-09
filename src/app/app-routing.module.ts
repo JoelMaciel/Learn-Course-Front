@@ -23,10 +23,11 @@ const routes: Routes = [
     data: {roles: [RoleType.ADMIN, RoleType.STUDENT]}
   },
 
-  {path: 'admin', component: AdminComponent,
+ {path: 'admin', component: AdminComponent,
     canActivate: [AuthGuard],
-    data: {roles: RoleType.ADMIN}
+    data: {roles: [RoleType.ADMIN]}
   },
+
 
   {path: '404', component: NotFoundComponent},
   {path: '401', component: UnauthorizedComponent},
@@ -44,3 +45,5 @@ export class AppRoutingModule {
     }
   }
  }
+
+

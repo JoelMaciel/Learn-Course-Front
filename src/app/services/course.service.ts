@@ -22,6 +22,9 @@ export class CourseService extends RequestBaseService {
     return this.http.post(API_URL, course, { headers: this.getHeaders });
   }
 
+  updateCourse(course: Course): Observable<any> {
+  return this.http.put<Course>(`${API_URL}/${course.courseId}`, course, { headers: this.getHeaders });
+  }
   deleteCourse(course: Course): Observable<any> {
     return this.http.delete(API_URL + "/" + course.courseId , { headers: this.getHeaders });
   }

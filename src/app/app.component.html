@@ -5,9 +5,11 @@
         <p>LearnEasy</p>
     </a>
     <div class="navbar-nav ms-auto">
-        <div class="nav-item" *ngIf="isAdmin()">
+        <!-- <div class="nav-item" *ngIf="currentUser && isAdmin()"> -->
+        <div class="nav-item" *ngIf="currentUser">
             <a [routerLink]="['/admin']" routerLinkActive="active" class="nav-link">Admin</a>
         </div>
+
         <div class="nav-item">
             <a [routerLink]="['/home']" routerLinkActive="active" class="nav-link">Home</a>
         </div>
@@ -25,7 +27,7 @@
     <div class="navbar-nav ms-auto" *ngIf="currentUser?.userId">
         <div class="nav-item">
             <a [routerLink]="['/profile']" routerLinkActive="active" class="nav-link">
-               {{ currentUser.username }}
+               {{ currentUser?.userId }}
            </a>
         </div>
         <div class="nav-item">

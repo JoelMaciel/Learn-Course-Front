@@ -10,23 +10,21 @@ import { RoleType } from './models/roleType.enum';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
-  currentUser: User = new User;
+ currentUser: User | undefined;
 
   constructor(private authenticationService: AuthenticationService, private router: Router){
     this.authenticationService.currentUser.subscribe(data => {
       this.currentUser = data;
-       console.log('Usuário atual:', this.currentUser);
-    })
+      console.log('Usuário atual:', this.currentUser);
+    });
   }
 
 isAdmin(): boolean {
-  if (this.currentUser?.roles) {
-    return this.currentUser.roles.some(role => role.roleName.includes(RoleType.ADMIN));
+    if (this.currentUser && this.currentUser.roles) {
+      return this.currentUser.roles.some(role => role.roleName === RoleType.ADMIN);
+    }
+    return false;
   }
-
-  return false;
-}
 
 
   logOut() {
@@ -34,3 +32,4 @@ isAdmin(): boolean {
     this.router.navigate(["/login"]);
   }
 }
+

@@ -9,22 +9,55 @@ import { CourseService } from 'src/app/services/course.service';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-  courseList: Course[] = [];
 
+  courseList: Array<Course> = [];
+  selectedCourse: Course = new Course();
+  errorMessage: string = "";
+
+  // @ViewChild(CourseDeleteComponent) deleteComponent: CourseDeleteComponent | undefined;
   @ViewChild(CourseSaveComponent) saveComponent: CourseSaveComponent | undefined;
   constructor(private courseService: CourseService) { }
 
   ngOnInit(): void {
     this.courseService.getAllCourses().subscribe(data => {
       this.courseList = data;
-    })
+    });
   }
 
   createCourseRequest() {
+    this.selectedCourse = new Course();
     this.saveComponent?.showCourseModal();
   }
 
-  saveCourseWatcher(course: Course) {
-    this.courseList.push(course);
+  editCourseRequest(item: Course) {
+    this.selectedCourse = Object.assign({}, item);
+    this.saveComponent?.showCourseModal();
   }
+
+  deleteCourseRequest(item: Course) {
+    this.selectedCourse = item;
+    // this.deleteComponent?.showDeleteModal();
+  }
+
+  saveCourseWatcher(course: Course) {
+    let itemIndex = this.courseList.findIndex(item => item.courseId === course.courseId);
+
+    if (itemIndex !== -1) {
+      this.courseList[itemIndex] = course;
+    } else {
+      this.courseList.push(course);
+    }
+  }
+
+  deleteCourse() {
+    let itemIndex = this.courseList.findIndex(item => item.courseId === this.selectedCourse.courseId);
+
+    this.courseService.deleteCourse(this.selectedCourse).subscribe(data => {
+      this.courseList.splice(itemIndex, 1);
+    }, err => {
+      this.errorMessage = 'Unexpected error occurred.';
+      console.log(err);
+    })
+  }
+
 }

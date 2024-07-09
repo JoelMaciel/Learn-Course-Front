@@ -11,7 +11,7 @@ export class User {
   email: string = "";
   phoneNumber: string = "";
   token: string = "";
-  roles: Role[] = []
+  roles: Role[] = [];
 
   constructor() {
     this.userId = uuidv4();
