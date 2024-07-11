@@ -4,14 +4,15 @@ import { RoleType } from './roleType.enum';
 
 export class User {
   userId: string | undefined;
-  username: string = "";
-  fullName: string = "";
-  cpf: string = "";
-  password: string = "";
-  email: string = "";
-  phoneNumber: string = "";
-  token: string = "";
+  username: string = '';
+  fullName: string = '';
+  cpf: string = '';
+  password: string = '';
+  email: string = '';
+  phoneNumber: string = '';
+  token: string = '';
   roles: Role[] = [];
+  sub: string = '';
 
   constructor() {
     this.userId = uuidv4();
