@@ -14,6 +14,7 @@ import { UnauthorizedComponent } from './pages/unauthorized/unauthorized.compone
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from '@angular/forms';
 import { CourseSaveComponent } from './components/course-save/course-save.component';
+import { CourseDeleteComponent } from './components/course-delete/course-delete.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { CourseSaveComponent } from './components/course-save/course-save.compon
     HomeComponent,
     RegisterComponent,
     UnauthorizedComponent,
-    CourseSaveComponent
+    CourseSaveComponent,
+    CourseDeleteComponent
   ],
   imports: [
     BrowserModule,

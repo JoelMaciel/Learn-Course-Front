@@ -11,36 +11,38 @@ import { AuthGuard } from './guard/auth.guard';
 import { RoleType } from './models/roleType.enum';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'home', pathMatch: 'full'},
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
 
-  {path: 'home', component: HomeComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
+  { path: 'home', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
 
-  {path: 'profile',
+  {
+    path: 'profile',
     component: ProfileComponent,
     canActivate: [AuthGuard],
-    data: {roles: [RoleType.ADMIN, RoleType.STUDENT]}
+    data: { roles: [RoleType.ADMIN, RoleType.STUDENT] },
   },
 
-  {path: 'admin', component: AdminComponent,
+  {
+    path: 'admin',
+    component: AdminComponent,
     canActivate: [AuthGuard],
-    data: {roles: RoleType.ADMIN}
+    data: { roles: [RoleType.ADMIN] },
   },
 
-  {path: '404', component: NotFoundComponent},
-  {path: '401', component: UnauthorizedComponent},
+  { path: '404', component: NotFoundComponent },
+  { path: '401', component: UnauthorizedComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-
 export class AppRoutingModule {
   constructor(private router: Router) {
     this.router.errorHandler = (error: any) => {
       this.router.navigate(['/404']);
-    }
+    };
   }
- }
+}
