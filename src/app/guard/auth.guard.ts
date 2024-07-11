@@ -21,11 +21,12 @@ export class AuthGuard implements CanActivate {
       this.currentUser = data;
     })
   }
-  canActivate(
+
+canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       if(this.currentUser) {
-        if(route.data.roles.roleName?.indexOf(RoleType.ADMIN) === -1) {
+        if(!route.data.roles.includes(RoleType.ADMIN)) {
           this.router.navigate(["/401"])
           return false;
         }
@@ -34,4 +35,6 @@ export class AuthGuard implements CanActivate {
     this.router.navigate(["/login"])
     return true;
   }
+
 }
+

@@ -3,9 +3,10 @@ import { RoleType } from './roleType.enum';
 
 export class Role {
   roleId: string | undefined;
-  roleName: RoleType[] = [];
+  roleName: RoleType;
 
-   constructor() {
+  constructor(roleName: RoleType) {
     this.roleId = uuidv4();
+    this.roleName = roleName;
   }
 }

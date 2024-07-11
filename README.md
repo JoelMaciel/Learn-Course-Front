@@ -1,4 +1,9 @@
-# Course
+# Learn Easy
+
+### Images of project
+
+![Captura de tela de 2024-07-11 17-12-10](https://github.com/user-attachments/assets/e03a2142-42b0-4b00-8213-880f230e0195)
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.18.
 
