@@ -5,15 +5,13 @@ declare var $: any;
 @Component({
   selector: 'app-course-delete',
   templateUrl: './course-delete.component.html',
-  styleUrls: ['./course-delete.component.css']
+  styleUrls: ['./course-delete.component.css'],
 })
 export class CourseDeleteComponent implements OnInit {
-
   @Output() confirmed = new EventEmitter<any>();
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   deleteCourse() {
     this.confirmed.emit();
@@ -21,6 +19,6 @@ export class CourseDeleteComponent implements OnInit {
   }
 
   showDeleteModal() {
-    $('deleteModal').modal('show');
+    $('#deleteModal').modal('show');
   }
 }
