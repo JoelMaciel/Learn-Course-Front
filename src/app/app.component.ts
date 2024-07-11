@@ -7,29 +7,35 @@ import { RoleType } from './models/roleType.enum';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
- currentUser: User | undefined;
+  currentUser: User | undefined;
 
-  constructor(private authenticationService: AuthenticationService, private router: Router){
-    this.authenticationService.currentUser.subscribe(data => {
+  constructor(
+    private authenticationService: AuthenticationService,
+    private router: Router,
+  ) {
+    this.authenticationService.currentUser.subscribe((data) => {
       this.currentUser = data;
-      console.log('Usuário atual:', this.currentUser);
     });
   }
 
-isAdmin(): boolean {
+  isAdmin(): boolean {
+    console.log(this.currentUser);
+
     if (this.currentUser && this.currentUser.roles) {
-      return this.currentUser.roles.some(role => role.roleName === RoleType.ADMIN);
+      if (Array.isArray(this.currentUser.roles))
+        return this.currentUser.roles.some(
+          (role) => role.roleName === RoleType.ADMIN,
+        );
+      return this.currentUser.roles === RoleType.ADMIN;
     }
     return false;
   }
 
-
   logOut() {
     this.authenticationService.logOut();
-    this.router.navigate(["/login"]);
+    this.router.navigate(['/login']);
   }
 }
-

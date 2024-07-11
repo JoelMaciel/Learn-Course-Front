@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { CourseDeleteComponent } from 'src/app/components/course-delete/course-delete.component';
 import { CourseSaveComponent } from 'src/app/components/course-save/course-save.component';
 import { Course } from 'src/app/models/course.models';
 import { CourseService } from 'src/app/services/course.service';
@@ -6,20 +7,23 @@ import { CourseService } from 'src/app/services/course.service';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+  styleUrls: ['./admin.component.css'],
 })
 export class AdminComponent implements OnInit {
-
   courseList: Array<Course> = [];
   selectedCourse: Course = new Course();
-  errorMessage: string = "";
+  errorMessage: string = '';
 
-  // @ViewChild(CourseDeleteComponent) deleteComponent: CourseDeleteComponent | undefined;
-  @ViewChild(CourseSaveComponent) saveComponent: CourseSaveComponent | undefined;
-  constructor(private courseService: CourseService) { }
+  @ViewChild(CourseDeleteComponent) deleteComponent:
+    | CourseDeleteComponent
+    | undefined;
+  @ViewChild(CourseSaveComponent) saveComponent:
+    | CourseSaveComponent
+    | undefined;
+  constructor(private courseService: CourseService) {}
 
   ngOnInit(): void {
-    this.courseService.getAllCourses().subscribe(data => {
+    this.courseService.getAllCourses().subscribe((data) => {
       this.courseList = data;
     });
   }
@@ -36,11 +40,13 @@ export class AdminComponent implements OnInit {
 
   deleteCourseRequest(item: Course) {
     this.selectedCourse = item;
-    // this.deleteComponent?.showDeleteModal();
+    this.deleteComponent?.showDeleteModal();
   }
 
   saveCourseWatcher(course: Course) {
-    let itemIndex = this.courseList.findIndex(item => item.courseId === course.courseId);
+    let itemIndex = this.courseList.findIndex(
+      (item) => item.courseId === course.courseId,
+    );
 
     if (itemIndex !== -1) {
       this.courseList[itemIndex] = course;
@@ -50,14 +56,18 @@ export class AdminComponent implements OnInit {
   }
 
   deleteCourse() {
-    let itemIndex = this.courseList.findIndex(item => item.courseId === this.selectedCourse.courseId);
+    let itemIndex = this.courseList.findIndex(
+      (item) => item.courseId === this.selectedCourse.courseId,
+    );
 
-    this.courseService.deleteCourse(this.selectedCourse).subscribe(data => {
-      this.courseList.splice(itemIndex, 1);
-    }, err => {
-      this.errorMessage = 'Unexpected error occurred.';
-      console.log(err);
-    })
+    this.courseService.deleteCourse(this.selectedCourse).subscribe(
+      (data) => {
+        this.courseList.splice(itemIndex, 1);
+      },
+      (err) => {
+        this.errorMessage = 'Unexpected error occurred.';
+        console.log(err);
+      },
+    );
   }
-
 }
