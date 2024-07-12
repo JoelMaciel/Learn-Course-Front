@@ -1,66 +1,67 @@
 body {
-    position: relative;
-    margin: 0;
-    padding: 0;
+  position: relative;
+  margin: 0;
+  padding: 0;
 }
 
 body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('assets/images/download.jpeg') no-repeat center center/cover;
-    filter: brightness(1.2);
-    z-index: -1;
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.8)),
+    url('assets/images/ead.jpg') no-repeat center center/cover;
+  z-index: -1;
 }
 
 button {
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.8s ease;
-    background-color: #721c24;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.8s ease;
+  background-color: #721c24;
 }
 
 button:hover {
-    transform: scale(1.05) translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transform: scale(1.05) translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .custom-card {
-    width: 350px;
-    max-width: 100%;
-    background-color: #eee!important;
+  width: 350px;
+  max-width: 100%;
+  background-color: #eee !important;
 }
 
 .user-icon {
-    font-size: 100px;
-    color: #963b8ded;
+  font-size: 100px;
+  color: #963b8ded;
 }
 
 .alert-danger {
-    color: #721c24;
-    background-color: #f8d7da;
-    border-color: #f5c6cb;
-    padding: 10px;
-    margin-top: 5px;
-    border-radius: 4px;
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 4px;
 }
 
 button {
-    color: white;
-    background-color: #377237ed;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+  color: white;
+  background-color: #377237ed;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 button:hover {
-    background-color: #3c6b40;
+  background-color: #3c6b40;
 }
