@@ -1,20 +1,21 @@
-export class Course {
-  id: number | undefined;
-  userId: number | undefined;
-  courseId: number | undefined;
+export class Purchase {
+  id: string | undefined;
+  userId: string | undefined;
+  courseId: string | undefined;
   title: string = '';
   price: number | undefined;
-  orderDate: Date = new Date();
+  orderDate: Date | undefined;
 
   constructor(
-    userId?: number,
-    courseId?: number,
+    userId?: string,
+    courseId?: string,
     title: string = '',
     price?: number,
+    orderDate?: Date,
   ) {
-    this.userId = userId;
     this.courseId = courseId;
     this.title = title;
     this.price = price;
+    this.orderDate = orderDate;
   }
 }
