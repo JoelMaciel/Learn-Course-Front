@@ -11,10 +11,11 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { HomeComponent } from './pages/home/home.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { UnauthorizedComponent } from './pages/unauthorized/unauthorized.component';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CourseSaveComponent } from './components/course-save/course-save.component';
 import { CourseDeleteComponent } from './components/course-delete/course-delete.component';
+import { authInterceptorProviders } from './interceptor/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -27,16 +28,16 @@ import { CourseDeleteComponent } from './components/course-delete/course-delete.
     RegisterComponent,
     UnauthorizedComponent,
     CourseSaveComponent,
-    CourseDeleteComponent
+    CourseDeleteComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [authInterceptorProviders],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
